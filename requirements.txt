@@ -3,6 +3,5 @@ requests
 beautifulsoup4
 scapy
 dnspython
-socket
 email-validator
 whois

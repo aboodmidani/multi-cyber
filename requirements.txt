@@ -1,6 +1,5 @@
 streamlit
 requests
-beautifulsoup4
+email
 dnspython
-python-whois
-tldextract
+beautifulsoup4

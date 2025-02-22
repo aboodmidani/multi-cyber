@@ -75,7 +75,7 @@ elif page == "Phishing Email Analyzer":
 # IP Lookup
 elif page == "IP Lookup":
     st.markdown("<div class='title'>🌍 IP Lookup Tool</div>", unsafe_allow_html=True)
-    ip_or_domain = st.text_input("Enter an IP or Domain:")
+    ip_or_domain = st.text_input("Enter an IP or Domain (e.g., www.example.com, example.com):")
     if st.button("📡 Lookup") and ip_or_domain:
         with st.spinner("Fetching IP details..."):
             ip_info = lookup_ip(ip_or_domain)

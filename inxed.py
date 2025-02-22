@@ -1,8 +1,6 @@
 import streamlit as st
 from web_vulnerability_scanner import run_web_vulnerability_scan
-from subdomain_takeover_detector import find_subdomains
 from phishing_email_analyzer import analyze_phishing_email
-from ids_lite import run_ids_scan
 from ip_lookup import lookup_ip
 from subdomain_finder import search_subdomains
 
@@ -47,10 +45,8 @@ st.markdown(
 st.sidebar.title("🔍 Cyber Security Toolkit")
 page = st.sidebar.radio("Select a Tool:", [
     "Web Vulnerability Scanner",
-    "Subdomain Takeover Detector",
     "Subdomain Finder",
     "Phishing Email Analyzer",
-    "Intrusion Detection System (IDS) Lite",
     "IP Lookup"
 ])
 
@@ -64,17 +60,6 @@ if page == "Web Vulnerability Scanner":
         st.success("✅ Scan Completed!")
         with st.expander("📋 View Scan Results"):
             st.write(results)
-
-# Subdomain Takeover Detector
-elif page == "Subdomain Takeover Detector":
-    st.markdown("<div class='title'>🌐 Subdomain Takeover Detector</div>", unsafe_allow_html=True)
-    domain = st.text_input("Enter a website domain (e.g., google.com):")
-    if st.button("🔍 Find Subdomains") and domain:
-        with st.spinner("Searching for subdomains..."):
-            subdomains = find_subdomains(domain)
-        st.success("✅ Search Completed!")
-        with st.expander("📋 View Found Subdomains"):
-            st.write(subdomains)
 
 # Subdomain Finder
 elif page == "Subdomain Finder":
@@ -97,16 +82,6 @@ elif page == "Phishing Email Analyzer":
         st.success("✅ Analysis Completed!")
         with st.expander("📋 View Analysis Details"):
             st.write(result)
-
-# Intrusion Detection System (IDS) Lite
-elif page == "Intrusion Detection System (IDS) Lite":
-    st.markdown("<div class='title'>🛠️ Intrusion Detection System (IDS) Lite</div>", unsafe_allow_html=True)
-    if st.button("🕵️ Run IDS Scan"):
-        with st.spinner("Running IDS scan..."):
-            ids_results = run_ids_scan()
-        st.success("✅ IDS Scan Completed!")
-        with st.expander("📋 View IDS Report"):
-            st.write(ids_results)
 
 # IP Lookup Tool
 elif page == "IP Lookup":

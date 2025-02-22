@@ -1,5 +1,5 @@
 import streamlit as st
-from web_vulnerability_scanner import run_web_vulnerability_scan
+from web_vulnerability_scanner import extract_email_metadata
 from phishing_email_analyzer import phishing_email_analyzer.py
 from ip_lookup import lookup_ip
 

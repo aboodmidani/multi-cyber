@@ -127,7 +127,7 @@ elif page == "WHOIS Lookup":
 # Port Scanner
 elif page == "Port Scanner":
     st.markdown("<div class='title'>🔌 Port Scanner</div>", unsafe_allow_html=True)
-    target_host = st.text_input("Enter Target IP or Domain:")
+    target_host = st.text_input("Enter Target IP or Domain: (e.g., www.example.com, example.com):")
     if st.button("🔎 Scan Ports") and target_host:
         with st.spinner("Scanning ports..."):
             port_results = scan_ports(target_host)

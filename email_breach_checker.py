@@ -13,11 +13,3 @@ def check_email_breach(email):
     else:
         return "Error checking breaches."
 
-# Streamlit UI
-st.title("📧 Email Breach Checker")
-email = st.text_input("Enter your email:")
-if st.button("🔍 Check Breach") and email:
-    with st.spinner("Checking for breaches..."):
-        result = check_email_breach(email)
-    st.success("✅ Check Completed!")
-    st.write("Breach Details:", result)

@@ -6,3 +6,5 @@ scapy
 email-validator
 ipwhois
 python-whois
+tld
+

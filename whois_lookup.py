@@ -1,9 +1,9 @@
 import streamlit as st
-import whois as whois_lib  # Rename import to avoid conflicts
+import whois
 
 def lookup_whois(domain):
     try:
-        domain_info = whois_lib.whois(domain)
+        domain_info = whois.whois(domain)
         return {
             "Domain Name": domain_info.domain_name,
             "Registrar": domain_info.registrar,
@@ -17,5 +17,3 @@ def lookup_whois(domain):
         }
     except Exception as e:
         return {"Error": str(e)}
-
-

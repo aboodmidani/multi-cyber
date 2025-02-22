@@ -97,7 +97,7 @@ elif page == "Malware URL Scanner":
     url = st.text_input("Enter URL to scan:")
     if st.button("🔍 Scan URL") and url:
         with st.spinner("Scanning for malware..."):
-            result = scan_url_for_malware(url)
+            result = check_url_blacklists(url)
         st.success("✅ Scan Completed!")
         with st.expander("📋 Scan Results"):
             st.write(result)

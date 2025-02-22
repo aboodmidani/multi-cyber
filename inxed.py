@@ -1,6 +1,6 @@
 import streamlit as st
 from web_vulnerability_scanner import run_web_vulnerability_scan
-from phishing_email_analyzer import extract_email_metadata
+from phishing_email_analyzer import analyze_email
 from ip_lookup import lookup_ip
 
 # Set up page config
@@ -64,8 +64,10 @@ elif page == "Phishing Email Analyzer":
     st.markdown("<div class='title'>📧 Phishing Email Analyzer</div>", unsafe_allow_html=True)
     uploaded_file = st.file_uploader("Upload an .eml file", type=["eml"])
     if uploaded_file and st.button("🔎 Analyze Email"):
+        with open("temp_email.eml", "wb") as f:
+            f.write(uploaded_file.getbuffer())
         with st.spinner("Analyzing email..."):
-            result = analyze_phishing_email("uploaded_email.eml")
+            result = analyze_email("temp_email.eml")
         st.success("✅ Analysis Completed!")
         with st.expander("📋 View Analysis Details"):
             st.write(result)

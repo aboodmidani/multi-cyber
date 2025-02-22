@@ -2,7 +2,7 @@ import streamlit as st
 from web_vulnerability_scanner import run_web_vulnerability_scan
 from phishing_email_analyzer import analyze_email
 from ip_lookup import lookup_ip
-from malware_url_scanner import scan_url_for_malware
+from malware_url_scanner import check_url_blacklists
 from email_breach_checker import check_email_breach
 from whois_lookup import lookup_whois
 from port_scanner import scan_ports

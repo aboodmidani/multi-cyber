@@ -4,6 +4,7 @@ from subdomain_takeover_detector import find_subdomains
 from phishing_email_analyzer import analyze_phishing_email
 from ids_lite import run_ids_scan
 from ip_lookup import lookup_ip
+from subdomain_finder import search_subdomains
 
 # Set up page config
 st.set_page_config(page_title="Cyber Security Tools", layout="wide", initial_sidebar_state="expanded")
@@ -21,6 +22,23 @@ st.markdown(
         color: white;
         border-radius: 8px;
     }
+    .stSpinner {
+        color: white;
+    }
+    .st-expander {
+        border-radius: 10px;
+        background-color: #1e1e1e;
+        padding: 10px;
+    }
+    .title {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .icon {
+        font-size: 30px;
+        padding-right: 10px;
+    }
     </style>
     """, unsafe_allow_html=True
 )
@@ -30,6 +48,7 @@ st.sidebar.title("🔍 Cyber Security Toolkit")
 page = st.sidebar.radio("Select a Tool:", [
     "Web Vulnerability Scanner",
     "Subdomain Takeover Detector",
+    "Subdomain Finder",
     "Phishing Email Analyzer",
     "Intrusion Detection System (IDS) Lite",
     "IP Lookup"
@@ -37,49 +56,65 @@ page = st.sidebar.radio("Select a Tool:", [
 
 # Web Vulnerability Scanner
 if page == "Web Vulnerability Scanner":
-    st.title("🛡️ Web Vulnerability Scanner")
+    st.markdown("<div class='title'>🛡️ Web Vulnerability Scanner</div>", unsafe_allow_html=True)
     target_url = st.text_input("Enter the target URL (e.g., http://example.com):")
     if st.button("🚀 Start Scan") and target_url:
-        with st.spinner("Scanning..."):
+        with st.spinner("Scanning for vulnerabilities..."):
             results = run_web_vulnerability_scan(target_url)
         st.success("✅ Scan Completed!")
-        st.write(results)
+        with st.expander("📋 View Scan Results"):
+            st.write(results)
 
 # Subdomain Takeover Detector
 elif page == "Subdomain Takeover Detector":
-    st.title("🌐 Subdomain Takeover Detector")
+    st.markdown("<div class='title'>🌐 Subdomain Takeover Detector</div>", unsafe_allow_html=True)
     domain = st.text_input("Enter a website domain (e.g., google.com):")
     if st.button("🔍 Find Subdomains") and domain:
         with st.spinner("Searching for subdomains..."):
             subdomains = find_subdomains(domain)
         st.success("✅ Search Completed!")
-        st.write(subdomains)
+        with st.expander("📋 View Found Subdomains"):
+            st.write(subdomains)
+
+# Subdomain Finder
+elif page == "Subdomain Finder":
+    st.markdown("<div class='title'>🔎 Subdomain Finder</div>", unsafe_allow_html=True)
+    domain = st.text_input("Enter a domain to find subdomains (e.g., example.com):")
+    if st.button("🔍 Search") and domain:
+        with st.spinner("Finding subdomains..."):
+            subdomain_list = search_subdomains(domain)
+        st.success("✅ Search Completed!")
+        with st.expander("📋 Found Subdomains"):
+            st.write(subdomain_list)
 
 # Phishing Email Analyzer
 elif page == "Phishing Email Analyzer":
-    st.title("📧 Phishing Email Analyzer")
+    st.markdown("<div class='title'>📧 Phishing Email Analyzer</div>", unsafe_allow_html=True)
     uploaded_file = st.file_uploader("Upload an .eml file", type=["eml"])
     if uploaded_file and st.button("🔎 Analyze Email"):
         with st.spinner("Analyzing email..."):
             result = analyze_phishing_email(uploaded_file)
         st.success("✅ Analysis Completed!")
-        st.write(result)
+        with st.expander("📋 View Analysis Details"):
+            st.write(result)
 
 # Intrusion Detection System (IDS) Lite
 elif page == "Intrusion Detection System (IDS) Lite":
-    st.title("🛠️ Intrusion Detection System (IDS) Lite")
+    st.markdown("<div class='title'>🛠️ Intrusion Detection System (IDS) Lite</div>", unsafe_allow_html=True)
     if st.button("🕵️ Run IDS Scan"):
         with st.spinner("Running IDS scan..."):
             ids_results = run_ids_scan()
         st.success("✅ IDS Scan Completed!")
-        st.write(ids_results)
+        with st.expander("📋 View IDS Report"):
+            st.write(ids_results)
 
 # IP Lookup Tool
 elif page == "IP Lookup":
-    st.title("🌍 IP Lookup Tool")
+    st.markdown("<div class='title'>🌍 IP Lookup Tool</div>", unsafe_allow_html=True)
     ip_or_domain = st.text_input("Enter an IP or Website URL:")
     if st.button("📡 Lookup") and ip_or_domain:
         with st.spinner("Fetching IP details..."):
             ip_info = lookup_ip(ip_or_domain)
         st.success("✅ Lookup Completed!")
-        st.write(ip_info)
+        with st.expander("📋 View IP Information"):
+            st.write(ip_info)

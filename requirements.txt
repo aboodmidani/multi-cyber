@@ -1,11 +1,6 @@
 streamlit
 requests
 beautifulsoup4
-python-whois
 dnspython
 email
-python-magic
-geoip2
-pyyaml
-tqdm
-validators
+python-whois

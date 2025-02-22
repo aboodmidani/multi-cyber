@@ -1,5 +1,4 @@
 streamlit
 requests
-email
-dnspython
 beautifulsoup4
+dnspython

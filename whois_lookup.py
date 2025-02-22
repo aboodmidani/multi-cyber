@@ -17,3 +17,14 @@ def lookup_whois(domain):
         }
     except Exception as e:
         return {"Error": str(e)}
+
+# Streamlit UI
+st.markdown("<div class='title'>🌐 WHOIS Lookup</div>", unsafe_allow_html=True)
+domain = st.text_input("Enter Domain (e.g., example.com):")
+
+if st.button("🔍 Lookup") and domain:
+    with st.spinner("Fetching WHOIS data..."):
+        whois_info = lookup_whois(domain)
+    st.success("✅ WHOIS Lookup Completed!")
+    with st.expander("📋 WHOIS Data"):
+        st.write(whois_info)

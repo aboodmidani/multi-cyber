@@ -2,3 +2,8 @@ streamlit
 requests
 beautifulsoup4
 dnspython
+whois
+scapy
+email-validator
+ipwhois
+python-whois

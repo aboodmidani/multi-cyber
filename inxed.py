@@ -2,7 +2,6 @@ import streamlit as st
 from web_vulnerability_scanner import run_web_vulnerability_scan
 from phishing_email_analyzer import analyze_phishing_email
 from ip_lookup import lookup_ip
-from subdomain_finder import search_subdomains
 
 # Set up page config
 st.set_page_config(page_title="Cyber Security Tools", layout="wide", initial_sidebar_state="expanded")
@@ -45,7 +44,6 @@ st.markdown(
 st.sidebar.title("🔍 Cyber Security Toolkit")
 page = st.sidebar.radio("Select a Tool:", [
     "Web Vulnerability Scanner",
-    "Subdomain Finder",
     "Phishing Email Analyzer",
     "IP Lookup"
 ])
@@ -61,24 +59,13 @@ if page == "Web Vulnerability Scanner":
         with st.expander("📋 View Scan Results"):
             st.write(results)
 
-# Subdomain Finder
-elif page == "Subdomain Finder":
-    st.markdown("<div class='title'>🔎 Subdomain Finder</div>", unsafe_allow_html=True)
-    domain = st.text_input("Enter a domain to find subdomains (e.g., example.com):")
-    if st.button("🔍 Search") and domain:
-        with st.spinner("Finding subdomains..."):
-            subdomain_list = search_subdomains(domain)
-        st.success("✅ Search Completed!")
-        with st.expander("📋 Found Subdomains"):
-            st.write(subdomain_list)
-
 # Phishing Email Analyzer
 elif page == "Phishing Email Analyzer":
     st.markdown("<div class='title'>📧 Phishing Email Analyzer</div>", unsafe_allow_html=True)
     uploaded_file = st.file_uploader("Upload an .eml file", type=["eml"])
     if uploaded_file and st.button("🔎 Analyze Email"):
         with st.spinner("Analyzing email..."):
-            result = analyze_phishing_email(uploaded_file)
+            result = analyze_phishing_email("uploaded_email.eml")
         st.success("✅ Analysis Completed!")
         with st.expander("📋 View Analysis Details"):
             st.write(result)

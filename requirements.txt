@@ -3,5 +3,4 @@ requests
 beautifulsoup4
 dnspython
 python-whois
-email
 tldextract

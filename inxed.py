@@ -1,6 +1,6 @@
 import streamlit as st
-from web_vulnerability_scanner import extract_email_metadata
-from phishing_email_analyzer import phishing_email_analyzer.py
+from web_vulnerability_scanner import run_web_vulnerability_scan
+from phishing_email_analyzer import extract_email_metadata
 from ip_lookup import lookup_ip
 
 # Set up page config
